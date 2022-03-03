@@ -71,8 +71,10 @@ public class BookServiceImpl extends ServiceImpl<BookDao, Book> implements IBook
     public Map<String, Object> getByPage(int currentPage, int pageSize) {
         Map<String,Object> resultMap = new HashMap<>();
         resultMap.put("code",200);
+        QueryWrapper<Book> qw = new QueryWrapper<>();
+        qw.eq("pass",1);
         IPage page = new Page(currentPage,pageSize);
-        bookDao.selectPage(page,null);
+        bookDao.selectPage(page,qw);
         resultMap.put("message",page);
         return resultMap;
     }
@@ -83,6 +85,7 @@ public class BookServiceImpl extends ServiceImpl<BookDao, Book> implements IBook
         resultMap.put("code",200);
         QueryWrapper<Book> qw = new QueryWrapper<>();
         qw.like("b_name",name);
+        qw.eq("pass",1);
         IPage page = new Page(currentPage,pageSize);
         bookDao.selectPage(page,qw);
         resultMap.put("message",page);
@@ -119,6 +122,32 @@ public class BookServiceImpl extends ServiceImpl<BookDao, Book> implements IBook
         resultMap.put("code",200);
         QueryWrapper<Book> qw = new QueryWrapper<>();
         qw.eq("t_id",type);
+        IPage page = new Page(currentPage,pageSize);
+        bookDao.selectPage(page,qw);
+        resultMap.put("message",page);
+        return resultMap;
+    }
+
+    @Override
+    public Map<String, Object> passBook(Integer id) {
+        Map<String,Object> resultMap = new HashMap<>();
+        resultMap.put("code",200);
+        int count = bookDao.passBook(id);
+        String mes;
+        if (count > 0)
+            mes = "审核通过";
+        else
+            mes = "审核失败";
+        resultMap.put("message",mes);
+        return resultMap;
+    }
+
+    @Override
+    public Map<String, Object> getUPByPage(int currentPage, int pageSize) {
+        Map<String,Object> resultMap = new HashMap<>();
+        resultMap.put("code",200);
+        QueryWrapper<Book> qw = new QueryWrapper<>();
+        qw.eq("pass",0);
         IPage page = new Page(currentPage,pageSize);
         bookDao.selectPage(page,qw);
         resultMap.put("message",page);

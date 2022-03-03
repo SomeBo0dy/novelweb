@@ -16,9 +16,9 @@ public class Book {
     private String author;
     private String imgPath;//不用传
     private String textPath;//不用传
+    private Integer pass;
     //文件key都用novel
     private String tId;
     private Integer count;//不用传
-    public Book() {count=0;}
-
+    public Book() {count = 0;pass = 0;}
 }

@@ -36,7 +36,11 @@ public class BookController {
         result.put("message",bookService.getById(id));
         return result;
     }
-
+    @ApiOperation(value = "根据提供的id通过书本审核")
+    @PostMapping("/pass/{id}")
+    public Map<String,Object> PassById(@PathVariable Integer id){
+        return bookService.passBook(id);
+    }
     //模糊查询
     @ApiOperation(value="根据提供的字符串和当前页数和每页书本数，获得这一页的模糊查询结果")
     @PostMapping("/{currentPage}/{pageSize}")
@@ -54,6 +58,11 @@ public class BookController {
     @GetMapping("/{currentPage}/{pageSize}")
     public Map<String,Object> getPage(@PathVariable int currentPage, @PathVariable int pageSize){
         return bookService.getByPage(currentPage,pageSize);
+    }
+    @ApiOperation(value="根据提供页码和每页的书本数获取页面的未审核的所有书本信息")
+    @GetMapping("/unPassed/{currentPage}/{pageSize}")
+    public Map<String,Object> getUPPage(@PathVariable int currentPage, @PathVariable int pageSize){
+        return bookService.getUPByPage(currentPage,pageSize);
     }
     @ApiOperation(value="上传书本")
     @PostMapping("upload")

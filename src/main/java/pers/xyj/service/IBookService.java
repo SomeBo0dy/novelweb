@@ -20,6 +20,10 @@ public interface IBookService extends IService<Book> {
     Map<String, Object> getHotList();
 
     Map<String, Object> getPageById(int type, int currentPage, int pageSize);
+
+    Map<String, Object> passBook(Integer id);
+
+    Map<String, Object> getUPByPage(int currentPage, int pageSize);
 }
 /*
 public interface BookService {
