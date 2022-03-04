@@ -101,6 +101,7 @@ public class BookServiceImpl extends ServiceImpl<BookDao, Book> implements IBook
         if (bookDao.deleteById(id) > 0){
             file1.delete();
             file2.delete();
+            bookDao.deleteCol(id);
             flag = true;
         }else {
             flag = false;

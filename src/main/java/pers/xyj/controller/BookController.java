@@ -74,7 +74,9 @@ public class BookController {
     @DeleteMapping("/{id}")
     public Map<String,Object> delete(@PathVariable Integer id){
         Map<String,Object> result = new HashMap<>();
-        result.put("code",bookService.deleteById(id) ? 200 : 400);
+        boolean flag = bookService.deleteById(id);
+        result.put("code",flag ? 200 : 400);
+        result.put("message",flag ? "删除成功" : "删除失败");
         return result;
     }
     @ApiOperation(value="输出收藏量前10的书")
