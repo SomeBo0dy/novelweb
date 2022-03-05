@@ -39,11 +39,11 @@ public class BookServiceImpl extends ServiceImpl<BookDao, Book> implements IBook
             Date cur = new Date();
             if (suffixName.equals(".txt")) {
                 filePath = "/www/wwwroot/text/"+ cur.getTime();
-                //filePath = "D:\\Users\\嗯哼\\Desktop\\text\\"+ cur.getTime();
+                //filePath = "C:\\Users\\97908\\Desktop\\txt"+ cur.getTime();
                 book.setTextPath(filePath +fileName);
             }else{
                 filePath = "/www/wwwroot/img/"+ cur.getTime();
-                //filePath = "D:\\Users\\嗯哼\\Desktop\\img\\"+ cur.getTime();
+                //filePath = "C:\\Users\\97908\\Desktop\\img\\"+ cur.getTime();
                 book.setImgPath(filePath + fileName);
             }
             File dest = new File(filePath + fileName);

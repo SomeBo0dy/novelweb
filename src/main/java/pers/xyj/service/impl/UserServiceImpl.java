@@ -50,7 +50,7 @@ public class UserServiceImpl extends ServiceImpl<UserDao, User> implements IUser
         }
         if (adminList.size() > 1){
             resultMap.put("code",400);
-            resultMap.put("message","管理员账号异常");
+            resultMap.put("message","账号异常");
             return resultMap;
         }
         User u = adminList.get(0);
@@ -61,6 +61,7 @@ public class UserServiceImpl extends ServiceImpl<UserDao, User> implements IUser
         }
         resultMap.put("code",200);
         resultMap.put("message","登陆成功");
+        resultMap.put("id",u.getUId());
         return resultMap;
     }
 
@@ -85,6 +86,7 @@ public class UserServiceImpl extends ServiceImpl<UserDao, User> implements IUser
         }
         resultMap.put("code",200);
         resultMap.put("message","登陆成功");
+        resultMap.put("id",u.getUId());
         return resultMap;
     }
 }

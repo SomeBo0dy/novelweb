@@ -67,7 +67,6 @@ public class BookController {
     @ApiOperation(value="上传书本")
     @PostMapping("upload")
     public Map<String,Object> addBook(@RequestParam("novel") MultipartFile[] files, Book book) throws IOException {
-        if (true) throw new IOException();
         return bookService.upload(files,book);
     }
     @ApiOperation(value="根据id删除书本信息")

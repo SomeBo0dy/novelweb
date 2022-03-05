@@ -17,8 +17,8 @@ public interface UserDao extends BaseMapper<User> {
     int insertUser(@Param("uName") String uname, @Param("uPassword") String upassword, @Param("admin") Integer admin);
 
 
-    @Select("SELECT u_name, u_password FROM user WHERE u_name = #{uName} AND admin = 0")
+    @Select("SELECT * FROM user WHERE u_name = #{uName} AND admin = 0")
     List<User> selectUserByName(@Param("uName") String uname);
-    @Select("SELECT u_name, u_password FROM user WHERE u_name = #{uName} AND admin = 1")
+    @Select("SELECT * FROM user WHERE u_name = #{uName} AND admin = 1")
     List<User> selectAdminByName(String uName);
 }
