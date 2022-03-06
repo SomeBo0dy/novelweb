@@ -37,14 +37,17 @@ public class BookServiceImpl extends ServiceImpl<BookDao, Book> implements IBook
             suffixName = fileName.substring(fileName.lastIndexOf("."));
             System.out.println(suffixName);
             Date cur = new Date();
+            Long time =  cur.getTime();
             if (suffixName.equals(".txt")) {
-                filePath = "/www/wwwroot/text/"+ cur.getTime();
+                filePath = "/www/wwwroot/101.43.56.126/text/" ;
+                fileName = + time + fileName;
                 //filePath = "C:\\Users\\97908\\Desktop\\txt\\"+ cur.getTime();
-                book.setTextPath(filePath +fileName);
+                book.setTextPath(fileName);
             }else{
-                filePath = "/www/wwwroot/img/"+ cur.getTime();
+                filePath = "/www/wwwroot/101.43.56.126/imgback/";
+                fileName = + time + fileName;
                 //filePath = "C:\\Users\\97908\\Desktop\\img\\"+ cur.getTime();
-                book.setImgPath(filePath + fileName);
+                book.setImgPath(fileName);
             }
             File dest = new File(filePath + fileName);
             if(!dest.getParentFile().exists()){
@@ -96,8 +99,8 @@ public class BookServiceImpl extends ServiceImpl<BookDao, Book> implements IBook
     public boolean deleteById(Integer id) {
         boolean flag;
         Book book = bookDao.selectById(id);
-        File file1 = new File(book.getImgPath());
-        File file2 = new File(book.getTextPath());
+        File file1 = new File("/www/wwwroot/101.43.56.126/imgback/"+book.getImgPath());
+        File file2 = new File("/www/wwwroot/101.43.56.126/text/"+book.getTextPath());
         if (bookDao.deleteById(id) > 0){
             file1.delete();
             file2.delete();
